@@ -34,7 +34,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: ./
-          file: ./apps/backend/Dockerfile
+          file: ./apps/backend/DockerFile
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/nestjs-app
 
