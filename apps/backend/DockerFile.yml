@@ -1,0 +1,19 @@
+# 1. Node 이미지 사용
+FROM node:18
+
+# 2. 작업 디렉토리 설정
+WORKDIR /app
+
+# 3. 종속성 설치
+COPY package.json yarn.lock ./
+RUN yarn install --frozen-lockfile
+
+# 4. NestJS 프로젝트 복사
+COPY . .
+
+# 5. 빌드 및 실행
+RUN yarn build
+CMD ["yarn", "start:prod"]
+
+# 6. 포트 설정
+EXPOSE 4000
