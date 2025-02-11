@@ -36,7 +36,7 @@ jobs:
           context: ./
           file: ./app/backend/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/nestjs-app:latest
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/nestjs-app
 
   deploy:
     name: 서버 배포
