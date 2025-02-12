@@ -5,8 +5,9 @@ FROM node:20
 WORKDIR /app
 
 # 3. 종속성 설치
-COPY package.json yarn.lock ./
+RUN yarn global add @nestjs/cli  
 RUN yarn install --frozen-lockfile
+
 
 # 4. NestJS 프로젝트 복사
 COPY . .
