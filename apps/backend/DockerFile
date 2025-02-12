@@ -4,19 +4,22 @@ FROM node:20
 # 2. 작업 디렉토리 설정
 WORKDIR /app
 
-# 3. NestJS CLI 설치
+# 3. NestJS CLI 설치 (빌드 시 필요)
 RUN yarn global add @nestjs/cli
 
-# 4. 종속성 설치
-COPY package.json yarn.lock ./
+# 4. 백엔드 전용 package.json과 루트의 yarn.lock 복사
+COPY apps/backend/package.json ./
+COPY yarn.lock ./
+
+# 5. 종속성 설치
 RUN yarn install --frozen-lockfile
 
-# 5. NestJS 프로젝트 복사
-COPY . .
+# 6. 백엔드 소스 코드 복사
+COPY apps/backend ./
 
-# 6. 빌드 및 실행
+# 7. 빌드 및 실행
 RUN yarn build
 CMD ["yarn", "start:prod"]
 
-# 7. 포트 설정
+# 8. 포트 설정
 EXPOSE 4000

@@ -33,7 +33,7 @@ jobs:
       - name: Docker 이미지 빌드 및 푸시
         uses: docker/build-push-action@v4
         with:
-          context: ./apps/backend
+          context: ./
           file: ./apps/backend/DockerFile
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/nestjs-app
